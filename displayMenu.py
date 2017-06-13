@@ -5,8 +5,8 @@ Created on Sat Jun  3 22:01:50 2017
 @author: megam
 """
 
-import numpy as np
-from inputNumber import inputNumber
+from inputNumber import inputInt
+
 
 def displayMenu(options):
     """
@@ -37,7 +37,7 @@ def displayMenu(options):
             
         # Get a valid menu choice
         try:
-            choice = inputNumber("Please choose a menu item: ")
+            choice = inputInt("Please choose a menu item: ")
             if choice in range(1, len(options)+1): break
             raise ValueError
         except ValueError:
