@@ -44,4 +44,5 @@ def dataLoad(filename):
     print(dataErrorTemperature)
     print(dataErrorGrowth)
     print(dataErrorBacteria)
+    
 dataLoad("test.txt")
