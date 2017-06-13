@@ -22,8 +22,11 @@ def dataLoad(filename):
     data = np.array(pd.read_csv(filename,sep=" "))
     dataErrorFree = np.zeros(3)
     dataErrorTemperature = np.zeros(3)
+    dataErrorTemperatureNo = np.array([])
     dataErrorGrowth = np.zeros(3)
+    dataErrorGrowthNo = np.array([])
     dataErrorBacteria = np.zeros(3)
+    dataErrorBacteriaNo = np.array([])
     for i in range(len(data[:,0])):
         # Does temperature match delimiters? 
         temperatureInRange = 10 <= data[i,0] <= 60
@@ -33,17 +36,28 @@ def dataLoad(filename):
         bacteriaInRange = 1 <= data[i,2] <= 4
         if (temperatureInRange and growthInRange and bacteriaInRange): 
             dataErrorFree = np.vstack((dataErrorFree, data[i,:]))
-        elif temperatureInRange == False:
+        if temperatureInRange == False:
             dataErrorTemperature = np.vstack((dataErrorTemperature,data[i,:]))
-        elif growthInRange == False:
+            # Row index of error values are found. 2 is added, since row numbers start at 0, and 
+            # because of the initial 1x3 array with zeros
+            dataErrorTemperatureNo = np.append(dataErrorTemperatureNo,i+2)
+        if growthInRange == False:
             dataErrorGrowth = np.vstack((dataErrorGrowth,data[i,:]))
-        elif bacteriaInRange == False:
+            dataErrorGrowthNo = np.append(dataErrorGrowthNo,i+2)
+        if bacteriaInRange == False:
             dataErrorBacteria = np.vstack((dataErrorBacteria,data[i,:]))
-     
-    print(dataErrorFree)
-    print(dataErrorTemperature)
-    print(dataErrorGrowth)
-    print(dataErrorBacteria)
-
+            dataErrorBacteriaNo = np.append(dataErrorBacteriaNo,i+2)
+    data = dataErrorFree
+    if np.size(dataErrorTemperatureNo) > 0:
+        print("Temperature error in line(s) {:f}. Temperature needs to be between 10 and 60 degrees celsius")
+    if np.size(dataErrorGrowthNo) > 0:
+        print("Growth rate error in line(s) {:f}. Growth rate needs to be a positive number")
+    if np.size(dataErrorBacteriaNo) > 0:
+        print("Error in bacteria type in line(s). Type needs to be a positive integer from 1 to 4 where:")
+        print("1. Salmonella enterica. 2. Bacillus cereus. 3. Listeria. 4. Brochothrix thermosphacta.")
+    return data
+    
+    
+#For test purposes
 if __name__ == '__main__':    
     dataLoad("test.txt")
