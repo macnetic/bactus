@@ -46,5 +46,6 @@ def displayMenu(options):
             
     return choice
 
+# Test om det virker
 if __name__ == '__main__':
     displayMenu(['Hej','Med','Dig'])
