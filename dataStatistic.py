@@ -41,7 +41,6 @@ def dataStatistics(data,statistic):
     if statistic == 'Mean Cold Growth Rate':
         sort = np.array(data[:,0] < 20)
         mcgr = data[sort][:,1]
-        print(mcgr)
         if np.size(mcgr) == 0:
             print("No temperatures below 20 degrees in selected data.")
             result = "N/A"
@@ -51,28 +50,26 @@ def dataStatistics(data,statistic):
     if statistic == 'Mean Hot Growth Rate':
         sort = np.array(data[:,0] > 50)
         mhgr = data[sort][:,1]
-        print(mhgr)
         if np.size(mhgr) == 0:
             print("No temperatures above 50 degrees in selected data.")
             result = "N/A"
         elif np.size(mhgr) > 0:
             result = np.mean(mhgr)
         
-    return result
-        
+    
     if statistic == "Rows":
-        print("There are {} rows in the selected data".format(result))   
-    elif result == "nan":
-        pass
+        print("There are {} rows in the selected data.".format(result))   
+    elif result == "N/A":
+        print("Cannot calculate {}. Please input valid data".format(statistic))
     else:
-        print("The {:f} of the selcted data is {:f}")
-    return(result)
+        print("The {} of the selcted data is {:f}".format(statistic,result))
+    return result
 
 # For test purposes
 if __name__ == "__main__":
     datatest = dataLoad("test.txt")
     print("Statistics Test:")
     print(dataStatistics(datatest,"Rows"))
-    print(dataStatistics(datatest,"Mean Cold Growth Rate"))
+    print(dataStatistics(np.array([[20,0,0]),"Mean Cold Growth Rate"))
 
 
