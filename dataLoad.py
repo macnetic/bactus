@@ -20,10 +20,10 @@ def dataLoad(filename):
     """
     # Text file is loaded as a CSV file with spaces as separators
     data = np.array(pd.read_csv(filename,sep=" "))
-    dataErrorFree = np.array([])
+    dataErrorFree = np.zeros(3)
     dataErrorTemperature = np.zeros(3)
-    dataErrorGrowth = np.array([])
-    dataErrorBacteria = np.array([])
+    dataErrorGrowth = np.zeros(3)
+    dataErrorBacteria = np.zeros(3)
     for i in range(len(data[:,0])):
         # Does temperature match delimiters? 
         temperatureInRange = 10 <= data[i,0] <= 60
@@ -32,17 +32,18 @@ def dataLoad(filename):
         # Does bacteria type match delimiters?   
         bacteriaInRange = 1 <= data[i,2] <= 4
         if (temperatureInRange and growthInRange and bacteriaInRange): 
-            dataErrorFree = np.append(dataErrorFree, data[i,:])
+            dataErrorFree = np.vstack((dataErrorFree, data[i,:]))
         elif temperatureInRange == False:
             dataErrorTemperature = np.vstack((dataErrorTemperature,data[i,:]))
         elif growthInRange == False:
-            dataErrorGrowth = np.append(dataErrorGrowth,data[i,:],axis=0)
+            dataErrorGrowth = np.vstack((dataErrorGrowth,data[i,:]))
         elif bacteriaInRange == False:
-            dataErrorBacteria = np.append(dataErrorBacteria,data[i,:],axis=0)
-        
+            dataErrorBacteria = np.vstack((dataErrorBacteria,data[i,:]))
+     
     print(dataErrorFree)
     print(dataErrorTemperature)
     print(dataErrorGrowth)
     print(dataErrorBacteria)
-    
-dataLoad("test.txt")
+
+if __name__ == '__main__':    
+    dataLoad("test.txt")
