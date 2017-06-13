@@ -6,7 +6,23 @@ Created on Tue Jun 13 12:14:56 2017
 """
 
 def dataStatistics(data,statistic):
+    """
+    Statistical calculations on data imported with dataLoad function.
+    
+    Parameters
+    ----------
+    Input: 
+        - Data as N x 3 array with
+        - Statistic type as str.
+       Types of statistic as str
+           'Mean Temperature', 'Mean Growth Rate', 'Std Temperature', 
+           'Std Growth rate', 'Rows', 'Mean Cold Growth rate' and 'Mean Hot Growth rate'
+    Return
+    ------
+    Returns statistic result
+    """
     #Mean Temperature
+    result = None
     if statistic == 'Mean Temperature':
         result = np.mean(data[:,0])
     #Mean Growth rate
@@ -22,18 +38,41 @@ def dataStatistics(data,statistic):
     if statistic == 'Rows':
         result = np.size(data[:,0])
     #Mean growth rate below 20 degrees Celsius
-    if statistic == 'Mean Cold Growth rate':
-        mcgr = np.array([])
-        for i in range(len(data[:,0])):
-            if data[i,0] < 20:
-                mcgr = np.append(data[i],mcgr)
-        result = np.mean(mcgr)
+    if statistic == 'Mean Cold Growth Rate':
+        sort = np.array(data[:,0] < 20)
+        mcgr = data[sort][:,1]
+        print(mcgr)
+        if np.size(mcgr) == 0:
+            print("No temperatures below 20 degrees in selected data.")
+            result = "N/A"
+        elif np.size(mcgr) > 0:
+            result = np.mean(mcgr)
     #Mean growth rate above 50 degrees Celsius
-    if statistic == 'Mean Hot Growth rate':
-        mhgr = np.array([])
-        for i in range(len(data[:,1])):
-            if data[i,1] < 20:
-                mhgr = np.append(data[i,1],mhgr)
-        result = np.mean(mhgr)    
+    if statistic == 'Mean Hot Growth Rate':
+        sort = np.array(data[:,0] > 50)
+        mhgr = data[sort][:,1]
+        print(mhgr)
+        if np.size(mhgr) == 0:
+            print("No temperatures above 50 degrees in selected data.")
+            result = "N/A"
+        elif np.size(mhgr) > 0:
+            result = np.mean(mhgr)
         
+    return result
+        
+    if statistic == "Rows":
+        print("There are {} rows in the selected data".format(result))   
+    elif result == "nan":
+        pass
+    else:
+        print("The {:f} of the selcted data is {:f}")
     return(result)
+
+# For test purposes
+if __name__ == "__main__":
+    datatest = dataLoad("test.txt")
+    print("Statistics Test:")
+    print(dataStatistics(datatest,"Rows"))
+    print(dataStatistics(datatest,"Mean Cold Growth Rate"))
+
+

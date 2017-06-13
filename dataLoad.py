@@ -49,15 +49,19 @@ def dataLoad(filename):
             dataErrorBacteriaNo = np.append(dataErrorBacteriaNo,i+2)
     data = dataErrorFree
     if np.size(dataErrorTemperatureNo) > 0:
-        print("Temperature error in line(s) {:f}. Temperature needs to be between 10 and 60 degrees celsius")
+#        dataErrorTemperatureNo = dataErrorTemperatureNo
+        print("Temperature error in line(s) {:f}. Temperature needs to be between 10 and 60 degrees celsius.")
     if np.size(dataErrorGrowthNo) > 0:
-        print("Growth rate error in line(s) {:f}. Growth rate needs to be a positive number")
+        print("Growth rate error in line(s) {:f}. Growth rate needs to be a positive number.")
     if np.size(dataErrorBacteriaNo) > 0:
         print("Error in bacteria type in line(s). Type needs to be a positive integer from 1 to 4 where:")
-        print("1. Salmonella enterica. 2. Bacillus cereus. 3. Listeria. 4. Brochothrix thermosphacta.")
+        print("1 = Salmonella enterica. 2 = Bacillus cereus. 3 = Listeria. 4 = Brochothrix thermosphacta.")
     return data
     
     
 #For test purposes
 if __name__ == '__main__':    
-    dataLoad("test.txt")
+    print(dataLoad("test.txt"))
+    datatest = dataLoad("test.txt")
+    print("Data Test")
+    print(datatest)
