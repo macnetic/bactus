@@ -8,7 +8,7 @@ Created on Sat Jun  3 22:01:50 2017
 from inputNumber import inputInt
 
 
-def displayMenu(options):
+def displayMenu(options, prompt=None):
     """
     DISPLAYMENU Displays a menu of options, ask the user to choose an item
     and returns the number of the menu item chosen.
@@ -30,6 +30,10 @@ def displayMenu(options):
     Author: Mikkel N. Schmidt, mnsc@dtu.dk, 2015
     """
     
+    # Default prompt
+    if prompt == None: 
+        prompt = 'Please choose a menu item: '
+    
     while True:
         # Display menu options
         for i in range(len(options)):
@@ -37,7 +41,7 @@ def displayMenu(options):
             
         # Get a valid menu choice
         try:
-            choice = inputInt("Please choose a menu item: ")
+            choice = inputInt(prompt)
             if choice in range(1, len(options)+1): break
             raise ValueError
         except ValueError:
