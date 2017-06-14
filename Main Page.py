@@ -11,15 +11,20 @@ from dataLoad import dataLoad
 
 
 # Menus options
-options = (
+optionsMain = (
         'Load data.','Filter data.','Display statistics.','Generate plots.',
         'Quit.'
         )
-
+optionsStat = (
+        'Mean Temperature', 'Mean Growth Rate', 'Std Temperature', 
+        'Std Growth rate', 'Rows', 'Mean Cold Growth rate', 'Mean Hot Growth rate'
+        )
+optionsFilter = (
+        
+        )
 data = None
-
 while True:
-    sel = displayMenu(options)
+    sel = displayMenu(optionsMain)
     
     if sel == 1:
         # Load data
@@ -30,7 +35,8 @@ while True:
         pass
     elif sel == 3:
         # Compute statistic
-        pass
+        selStat = displayMenu(optionsStat)
+        print(dataStatistics(selStat))
     elif sel == 4:
         # Generate plots
         pass
