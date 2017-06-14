@@ -26,7 +26,7 @@ def dataLoad(filename):
     dataErrorGrowth = np.zeros(3)
     dataErrorGrowthNo = np.array([])
     dataErrorBacteria = np.zeros(3)
-    dataErrorBacteriaNo = np.array([])
+    dataErrorBacteriaNo = []
     for i in range(len(data[:,0])):
         # Does temperature match delimiters? 
         temperatureInRange = 10 <= data[i,0] <= 60
@@ -40,22 +40,24 @@ def dataLoad(filename):
             dataErrorTemperature = np.vstack((dataErrorTemperature,data[i,:]))
             # Row index of error values are found. 2 is added, since row numbers start at 0, and 
             # because of the initial 1x3 array with zeros
-            dataErrorTemperatureNo = np.append(dataErrorTemperatureNo,i+2)
+            dataErrorTemperatureNo = np.append(dataErrorTemperatureNo,str(i+2))
         if growthInRange == False:
             dataErrorGrowth = np.vstack((dataErrorGrowth,data[i,:]))
-            dataErrorGrowthNo = np.append(dataErrorGrowthNo,i+2)
+            dataErrorGrowthNo = np.append(dataErrorGrowthNo,str(i+2))
         if bacteriaInRange == False:
             dataErrorBacteria = np.vstack((dataErrorBacteria,data[i,:]))
-            dataErrorBacteriaNo = np.append(dataErrorBacteriaNo,i+2)
-    data = dataErrorFree
+            dataErrorBacteriaNo = np.append(dataErrorBacteriaNo,str(i+2))
+    data = dataErrorFree[1:]
+    
     if np.size(dataErrorTemperatureNo) > 0:
 #        dataErrorTemperatureNo = dataErrorTemperatureNo
-        print("Temperature error in line(s) {:f}. Temperature needs to be between 10 and 60 degrees celsius.")
+        print("Temperature error in line(s) {}. Temperature needs to be between 10 and 60 degrees celsius. Line(s) have been removed from dataset.")
     if np.size(dataErrorGrowthNo) > 0:
-        print("Growth rate error in line(s) {:f}. Growth rate needs to be a positive number.")
+        print("Growth rate error in line(s) {}. Growth rate needs to be a positive number. Line(s) have been removed from dataset.")
     if np.size(dataErrorBacteriaNo) > 0:
-        print("Error in bacteria type in line(s). Type needs to be a positive integer from 1 to 4 where:")
+        print("Error in bacteria type in line(s) {}. Line(s) have been removed from dataset. Type needs to be a positive integer from 1 to 4 where:")
         print("1 = Salmonella enterica. 2 = Bacillus cereus. 3 = Listeria. 4 = Brochothrix thermosphacta.")
+    
     return data
     
     
