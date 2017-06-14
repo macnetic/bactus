@@ -1,4 +1,4 @@
-    # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Created on Mon Jun 12 14:12:10 2017
 
@@ -21,11 +21,11 @@ def getFilterParams():
     
     Return
     ------
-    temp_range : tuple
+    temp_range : array
         Temperature range. returns None if user doesn't input range.
-    growth_range : tuple
+    growth_range : array
         Growth rate range. returns None if user doesn't input range.
-    bac_type : tuple
+    bac_type : array
         Bacteria types. returns None if no bacteria are selected.
     """
     
@@ -39,9 +39,9 @@ def getFilterParams():
         print('{:d}. {:s}'.format(i+1, bacteria[i]))
     bac_type = inputIntSet('Bacteria species: ')
     
-    return temp_range, growth_range, bac_type
+    return [temp_range, growth_range, bac_type]
 
-def filterData(data):
+def filterData(data, filter_params):
     """
     Filters data according user specified criteria
     
@@ -49,6 +49,10 @@ def filterData(data):
     ----------
     data : ndarray
         Input data array
+    filter_params : array
+        Filter parameters. First and second elements are temperature and
+        growth rate ranges as tuples, third element is a tuple for 
+        bacteria species.
     
     Return
     ------
@@ -56,6 +60,34 @@ def filterData(data):
         Array that only contains filtered data
     """
     
-    
-    
-    return filtered_data
+    # Unpack filter parameters
+    tr, gr, bt = filter_params
+
+    # Create a masked array
+    m_data = np.ma.masked_array(data)
+
+    # If user reset filter we set the mask for that column to False
+    # For ranges, mask everything out of range
+    # For bacteria type, check if it should be filtered
+    if tr == None:
+        m_data[:,0].mask = False
+    else:
+        m_data[:,0] = np.ma.masked_outside(m_data[:,0], *tr)
+
+    if gr == None:
+        m_data[:,1].mask = False
+    else:
+        m_data[:,1] = np.ma.masked_outside(m_data[:,1], *gr)
+
+    if bt == None:
+        m_data[:,2].mask = False
+    else:
+        m_data[:,2] = np.ma.masked_where(~np.in1d(m_data[:,2], bt), m_data[:,2])
+
+    #Invert and combine
+    filter = ~m_data[:,0].mask & ~m_data[:,1].mask & ~m_data[:,2].mask
+
+    # Apply filter
+    f_data = data[filter,:]
+
+    return f_data
