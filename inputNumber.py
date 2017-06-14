@@ -69,7 +69,7 @@ def inputSet(prompt, sep=','):
                 break
             
             # Attempt to convert to tuple containing values
-            num_set = tuple(float(num) for num in str_in.split(sep=sep))
+            num_set = [float(num) for num in str_in.split(sep=sep)]
             break
         except ValueError:
             print('Invalid input')
@@ -117,5 +117,5 @@ def inputIntSet(prompt, sep=','):
     if user_input == None:
         return user_input
     else:
-        int_set = tuple(int(e) for e in user_input)
+        int_set = [int(e) for e in user_input]
         return int_set
