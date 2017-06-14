@@ -2,7 +2,7 @@
 """
 Created on Tue Jun 13 12:14:56 2017
 
-@author: Magnus Oksbøl Therkelsen
+@author: Magnus Oksbøl Therkelsen & Carl Emil Elling
 """
 
 def dataStatistics(data,statistic):
@@ -20,6 +20,8 @@ def dataStatistics(data,statistic):
     Return
     ------
     Returns statistic result
+    
+    Authors: Magnus Oksbøl Therkelsen & Carl Emil Elling
     """
     #Mean Temperature
     result = None
@@ -70,6 +72,6 @@ if __name__ == "__main__":
     datatest = dataLoad("test.txt")
     print("Statistics Test:")
     print(dataStatistics(datatest,"Rows"))
-    print(dataStatistics(np.array([[20,0,0]),"Mean Cold Growth Rate"))
+    print(dataStatistics(np.array([20,0,0]),"Mean Cold Growth Rate"))
 
 
