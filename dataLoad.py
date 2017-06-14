@@ -47,17 +47,18 @@ def dataLoad(filename):
         if bacteriaInRange == False:
             dataErrorBacteria = np.vstack((dataErrorBacteria,data[i,:]))
             dataErrorBacteriaNo = np.append(dataErrorBacteriaNo,str(i+2))
+    # initial [0,0,0] array removed
     data = dataErrorFree[1:]
-    
     if np.size(dataErrorTemperatureNo) > 0:
-#        dataErrorTemperatureNo = dataErrorTemperatureNo
-        print("Temperature error in line(s) {}. Temperature needs to be between 10 and 60 degrees celsius. Line(s) have been removed from dataset.")
+        dataErrorTemperatureNo = ", ".join(dataErrorTemperatureNo)
+        print("Temperature error in line(s): {}. Temperature needs to be between 10 and 60 degrees celsius. Line(s) have been removed from dataset.".format(dataErrorTemperatureNo))
     if np.size(dataErrorGrowthNo) > 0:
-        print("Growth rate error in line(s) {}. Growth rate needs to be a positive number. Line(s) have been removed from dataset.")
+        dataErrorGrowthNo = ", ".join(dataErrorGrowthNo)
+        print("Growth rate error in line(s): {}. Growth rate needs to be a positive number. Line(s) have been removed from dataset.".format(dataErrorGrowthNo))
     if np.size(dataErrorBacteriaNo) > 0:
-        print("Error in bacteria type in line(s) {}. Line(s) have been removed from dataset. Type needs to be a positive integer from 1 to 4 where:")
+        dataErrorBacteriaNo = ", ".join(dataErrorBacteriaNo)
+        print("Error in bacteria type in line(s): {}. Line(s) have been removed from dataset. Type needs to be a positive integer from 1 to 4 where:".format(dataErrorBacteriaNo))
         print("1 = Salmonella enterica. 2 = Bacillus cereus. 3 = Listeria. 4 = Brochothrix thermosphacta.")
-    
     return data
     
     
@@ -67,3 +68,4 @@ if __name__ == '__main__':
     datatest = dataLoad("test.txt")
     print("Data Test")
     print(datatest)
+    
