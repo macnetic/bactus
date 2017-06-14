@@ -20,12 +20,7 @@ def inputFloat(prompt):
     num : float
         User input float
     """
-    # INPUTNUMBER Prompts user to input a number
-    #
-    # Usage: num = inputNumber(prompt) Displays prompt and asks user to input a
-    # number. Repeats until user inputs a valid number.
-    #
-    # Author: Mikkel N. Schmidt, mnsc@dtu.dk, 2015
+    
     while True:
         try:
             num = float(input(prompt))
@@ -51,3 +46,17 @@ def inputInt(prompt):
         User input integer
     """
     return int(inputFloat(prompt))
+
+def inputRange(prompt, sep=','):
+    while True:
+        try:
+            str_in = input(prompt)
+            if input == '':
+                # TODO
+                pass
+            f_range = tuple(float(num) for num in input(prompt).split(sep=sep))
+            break
+        except ValueError:
+            print('Invalid range')
+        
+    return f_range
