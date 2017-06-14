@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+    # -*- coding: utf-8 -*-
 """
 Created on Mon Jun 12 14:12:10 2017
 
@@ -7,6 +7,39 @@ Created on Mon Jun 12 14:12:10 2017
 
 import numpy as np
 
+from inputNumber import inputRange, inputIntSet
+from displayMenu import displayMenu
+
+bacteria = (
+        'Salmonella enterica', 'Bacillus cereus', 'Listeria', 
+        'Brochothrix thermosphacta'
+        )
+
+def getFilterParams():
+    """
+    Prompts user for filter parameters.
+    
+    Return
+    ------
+    temp_range : tuple
+        Temperature range. returns None if user doesn't input range.
+    growth_range : tuple
+        Growth rate range. returns None if user doesn't input range.
+    bac_type : tuple
+        Bacteria types. returns None if no bacteria are selected.
+    """
+    
+    print("Write values comma-separated, e.g. '10.0,60.0' or '1,2,3'.")
+    print('Leave the field empty to reset filter.')
+    temp_range = inputRange('Temperature range: ')
+    growth_range = inputRange('Growth rate range: ')
+    
+    # Display options for bacteria filter
+    for i in range(len(bacteria)):
+        print('{:d}. {:s}'.format(i+1, bacteria[i]))
+    bac_type = inputIntSet('Bacteria species: ')
+    
+    return temp_range, growth_range, bac_type
 
 def filterData(data):
     """
@@ -23,12 +56,6 @@ def filterData(data):
         Array that only contains filtered data
     """
     
-    temp_range = float(input('Temperature: <lower upper>: ').split(sep = ' '))
-    growth_range = float(input('Growth: <lower upper>: ').split(sep = ' '))
-    bac_dict = {
-            'Salmonella enterica':1, 'Bacillus cereus':2, 'Listeria':3, 
-            'Brochothrix thermosphacta':4 
-            }
     
     
     return filtered_data
