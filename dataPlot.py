@@ -9,14 +9,11 @@ import matplotlib.pyplot as plt
 def dataPlot(data):
     """
     DATAPLOT 
-    
-    
+
     Parameters
     ----------
     Data: 
-        N x 3 array.
-        
-        Data input from dataLoad. Either filtered or unfiltered
+        N x 3 array. Data input from dataLoad. Either filtered or unfiltered
     
     Prints
     ------
