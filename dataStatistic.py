@@ -60,18 +60,18 @@ def dataStatistics(data,statistic):
         
     
     if statistic == "Rows":
-        print("There are {} rows in the selected data.".format(result))   
+        print("There are {:s} rows in the selected data.".format(result))   
     elif result == "N/A":
-        print("Cannot calculate {}. Please input valid data".format(statistic))
+        print("Cannot calculate {:s}. Please input valid data".format(statistic))
     else:
-        print("The {} of the selcted data is {:f}".format(statistic,result))
+        print("The {:s} of the selcted data is {:f}".format(statistic,result))
     return result
 
 # For test purposes
 if __name__ == "__main__":
     datatest = dataLoad("test.txt")
     print("Statistics Test:")
-    print(dataStatistics(datatest,"Rows"))
-    print(dataStatistics(np.array([20,0,0]),"Mean Cold Growth Rate"))
+    print(dataStatistics(datatest,"Mean Cold Growth Rate"))
+#    print(dataStatistics(np.array([20,0,0]),"Mean Cold Growth Rate"))
 
 
