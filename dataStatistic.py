@@ -57,8 +57,6 @@ def dataStatistics(data,statistic):
             result = "N/A"
         elif np.size(mhgr) > 0:
             result = np.mean(mhgr)
-    # Filter settings
-    print("Statistics for ")
     # Results returned
     if statistic == "Rows":
         print("There are {:s} rows in the selected data.".format(result))   

@@ -24,13 +24,14 @@ def dataPlot(data):
     """
 #    Number of bacteria - bar chart
 # Number of different bacteria is counted
+
     bacId = [1,2,3,4]
     bacNo = [0,0,0,0]
     for i in range(len(data[:,2])):
         for j in range(len(bacId)):
             if data[i,2] == bacId[j]:
                 bacNo[j] = bacNo[j]+1
-                     
+                   
     width = 0.35
     colors = ["green","red","blue","orange"]
     plot = plt.bar(bacId,bacNo,width,color=colors,alpha=0.7)
@@ -40,9 +41,13 @@ def dataPlot(data):
     plt.xticks(bacId, ('1', '2', '3', '4'))
     #Legend for the dataset
     plt.legend((plot[0],plot[1],plot[2],plot[3]), ('1. Salmonella enterica', '2. Bacillus cereus','3. Listeria','4. Brochothrix thermosphacta'),bbox_to_anchor=(1,1))
-    # Filter criteria added as text
-    test = [0,1,2]
-    plt.figtext(0.2,-0.05,str(test))
+    # Filter criteria 
+    if  == none
+    tempRange = "Temperature between: {:f] - {:f}"
+    growthRange = 
+    bacteriaSel = 
+    criteria = [0,1,2]
+    plt.figtext(0.2,-0.05,str(criteria))
 
     plt.show()
     
@@ -67,7 +72,7 @@ def dataPlot(data):
     ax1.legend(bbox_to_anchor=(1,1))
     # Filter criteria added as text
     test = [0,1,2]
-    plt.figtext(0.2,-0.05,str(test))
+    plt.figtext(0.2,-0.05,str(criteria))
     plt.show()
 
 # For testing purposes
