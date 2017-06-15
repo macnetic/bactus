@@ -4,7 +4,6 @@ Created on Tue Jun 13 14:49:45 2017
 
 @author: Carl Emil Elling & Magnus Oksbøl Therkelsen
 """
-import numpy as np
 import matplotlib.pyplot as plt
 def dataPlot(data):
     """
@@ -45,13 +44,12 @@ def dataPlot(data):
         #Legend for the dataset
         plt.legend((plot[0],plot[1],plot[2],plot[3]), ('1. Salmonella enterica', '2. Bacillus cereus','3. Listeria','4. Brochothrix thermosphacta'),bbox_to_anchor=(1,1))
         # Filter criteria 
-#    if  == none
-        tempRange = "Temperature between: {:f] - {:f}"
-#    growthRange = 
-#    bacteriaSel = 
+        
+        tempRange = "Temperature range: {:s}"
+        growthRange = "Growth range: {:s}"
+        bacteriaSel = "Bacteria selected: {}"
         criteria = [0,1,2]
         plt.figtext(0.98,0.6,str(criteria))
-
         plt.show()
     
 #    Growth rate by temperature
@@ -73,8 +71,7 @@ def dataPlot(data):
         pl3 = ax1.plot(bac3[:,0],bac3[:,1],'-o',color="blue",alpha=0.7,label='3. Listeria')
         pl4 = ax1.plot(bac4[:,0],bac4[:,1],'-o',color="orange",alpha=0.7,label='4. Brochothrix thermosphacta')
         ax1.legend(bbox_to_anchor=(1,1))
-    # Filter criteria added as text
-        
+        # Filter criteria    
         plt.figtext(0.98,0.6,str(criteria))
         plt.show()
 
