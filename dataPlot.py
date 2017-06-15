@@ -4,6 +4,7 @@ Created on Tue Jun 13 14:49:45 2017
 
 @author: Carl Emil Elling & Magnus Oksbøl Therkelsen
 """
+import numpy as np
 import matplotlib.pyplot as plt
 def dataPlot(data):
     """
@@ -21,7 +22,7 @@ def dataPlot(data):
     
     Authors: Carl Emil Elling & Magnus Oksbøl Therkelsen
     """
-    if data == None:
+    if np.size(data) == 0:
         print('No data to plot')
     else:
 #    Number of bacteria - bar chart
