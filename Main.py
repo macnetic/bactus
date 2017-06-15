@@ -42,6 +42,7 @@ while True:
         f_data = filterData.filterData(data, f_params)
     elif sel == 3:
         # Compute statistics
+        print("Filter(s) applied: {}")
         selStat = displayMenu(optionsStat)
         dataStatistics(data,optionsStat[selStat-1])
     elif sel == 4:
