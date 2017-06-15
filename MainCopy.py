@@ -10,7 +10,7 @@ from getFilename import getFilename
 from dataLoad import dataLoad
 import filterData
 from dataStatistic import *
-from dataPlot import dataPlot
+from dataPlot import *
 
 
 # Menus options
@@ -48,7 +48,7 @@ while True:
         else:
             f_params[choice-1] = filterData.getFilterParam(choice)
 
-        f_data = filterData.filterData(data, f_params)
+        f_data = filterData.filterData(f_data, f_params)
     elif sel == 3:
         
         # Compute statistics
