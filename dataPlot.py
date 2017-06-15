@@ -21,6 +21,7 @@ def dataPlot(data):
     Prints
     ------
     Bar chart of number of different bacteria 
+    Plot of growth rate by temperature
     
     Authors: Carl Emil Elling & Magnus Oksbøl Therkelsen
     """
@@ -32,6 +33,7 @@ def dataPlot(data):
         for j in range(len(bacId)):
             if data[i,2] == bacId[j]:
                 bacNo[j] = bacNo[j]+1
+                     
     width = 0.35
     colors = ["green","red","blue","orange"]
     plot = plt.bar(bacId,bacNo,width,color=colors,alpha=0.7)
@@ -39,9 +41,9 @@ def dataPlot(data):
     plt.xlabel("Bacteria type")
     plt.ylabel("Number of bacteria")
     plt.xticks(bacId, ('1', '2', '3', '4'))
-    #A legend is made for the dataset
+    #Legend for the dataset
     plt.legend((plot[0],plot[1],plot[2],plot[3]), ('1. Salmonella enterica', '2. Bacillus cereus','3. Listeria','4. Brochothrix thermosphacta'),bbox_to_anchor=(1,1))
-    #Filter criteria
+    # Filter criteria added as text
     test = [0,1,2]
     plt.figtext(0.2,-0.05,str(test))
 
@@ -55,6 +57,7 @@ def dataPlot(data):
     bac2 = sortedData[sortedData[:,2] == 2]
     bac3 = sortedData[sortedData[:,2] == 3]
     bac4 = sortedData[sortedData[:,2] == 4]
+    
     fig = plt.figure()
     ax1 = fig.add_subplot(111)
     plt.title("Growth rate by temperature")
@@ -65,7 +68,7 @@ def dataPlot(data):
     pl3 = ax1.plot(bac3[:,0],bac3[:,1],'-o',color="blue",alpha=0.7,label='3. Listeria')
     pl4 = ax1.plot(bac4[:,0],bac4[:,1],'-o',color="orange",alpha=0.7,label='4. Brochothrix thermosphacta')
     ax1.legend(bbox_to_anchor=(1,1))
-    
+    # Filter criteria added as text
     test = [0,1,2]
     plt.figtext(0.2,-0.05,str(test))
     plt.plot()
