@@ -23,9 +23,9 @@ optionsStat = (
         'Std Growth rate', 'Rows', 'Mean Cold Growth rate', 'Mean Hot Growth rate', 'Back to Main Menu'
         )
 optionsFilter = ('Temperature range', 'Growth rate range', 'Bacteria species', 'Reset all filters','Back to Main Menu')
-data = None
+data = np.array([])
 f_params = [None, None, None]
-f_data = None
+f_data = np.array([])
 
 while True:
     sel = displayMenu(optionsMain)
