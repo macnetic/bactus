@@ -23,48 +23,51 @@ def dataStatistics(data,statistic):
     
     Authors: Magnus Oksbøl Therkelsen & Carl Emil Elling
     """
-    #Mean Temperature
-    result = None
-    if statistic == 'Mean Temperature':
-        result = np.mean(data[:,0])
-    #Mean Growth rate
-    if statistic == 'Mean Growth Rate':
-        result = np.mean(data[:,1])
-    #Standard deviation of temperature
-    if statistic == 'Std Temperature':
-        result = np.std(data[:,0])
-    #Standard deviation of growth rate
-    if statistic == 'Std Growth rate':
-        result = np.std(data[:,1])
-    #Total number of rows in data
-    if statistic == 'Rows':
-        result = np.size(data[:,0])
-    #Mean growth rate below 20 degrees Celsius
-    if statistic == 'Mean Cold Growth Rate':
-        sort = np.array(data[:,0] < 20)
-        mcgr = data[sort][:,1]
-        if np.size(mcgr) == 0:
-            print("No temperatures below 20 degrees in selected data.")
-            result = "N/A"
-        elif np.size(mcgr) > 0:
-            result = np.mean(mcgr)
-    #Mean growth rate above 50 degrees Celsius
-    if statistic == 'Mean Hot Growth Rate':
-        sort = np.array(data[:,0] > 50)
-        mhgr = data[sort][:,1]
-        if np.size(mhgr) == 0:
-            print("No temperatures above 50 degrees in selected data.")
-            result = "N/A"
-        elif np.size(mhgr) > 0:
-            result = np.mean(mhgr)
-    # Results returned
-    if statistic == "Rows":
-        print("There are {:s} rows in the selected data.".format(result))   
-    elif result == "N/A":
-        print("Cannot calculate {:s}. Please input valid data".format(statistic))
+    if data == None:
+        print("No data selected")
     else:
-        print("The {:s} of the selcted data is {:f}".format(statistic,result))
-    return result
+    #Mean Temperature
+        result = None
+        if statistic == 'Mean Temperature':
+            result = np.mean(data[:,0])
+    #Mean Growth rate
+        if statistic == 'Mean Growth Rate':
+            result = np.mean(data[:,1])
+    #Standard deviation of temperature
+        if statistic == 'Std Temperature':
+            result = np.std(data[:,0])
+    #Standard deviation of growth rate
+        if statistic == 'Std Growth rate':
+            result = np.std(data[:,1])
+    #Total number of rows in data
+        if statistic == 'Rows':
+            result = np.size(data[:,0])
+    #Mean growth rate below 20 degrees Celsius
+        if statistic == 'Mean Cold Growth Rate':
+            sort = np.array(data[:,0] < 20)
+            mcgr = data[sort][:,1]
+            if np.size(mcgr) == 0:
+                print("No temperatures below 20 degrees in selected data.")
+                result = "N/A"
+            elif np.size(mcgr) > 0:
+                result = np.mean(mcgr)
+    #Mean growth rate above 50 degrees Celsius
+        if statistic == 'Mean Hot Growth Rate':
+            sort = np.array(data[:,0] > 50)
+            mhgr = data[sort][:,1]
+            if np.size(mhgr) == 0:
+                print("No temperatures above 50 degrees in selected data.")
+                result = "N/A"
+            elif np.size(mhgr) > 0:
+                result = np.mean(mhgr)
+    # Results returned
+        if statistic == "Rows":
+            print("There are {:s} rows in the selected data.".format(result))   
+        elif result == "N/A":
+            print("Cannot calculate {:s}. Please input valid data".format(statistic))
+        else:
+            print("The {:s} of the selcted data is {:f}".format(statistic,result))
+        return result
 
 # For test purposes
 if __name__ == "__main__":
