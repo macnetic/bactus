@@ -23,7 +23,7 @@ def dataPlot(data):
     Authors: Carl Emil Elling & Magnus Oksbøl Therkelsen
     """
     if data == None:
-        print("No data to plot")
+        print('No data to plot')
     else:
 #    Number of bacteria - bar chart
 # Number of different bacteria is counted

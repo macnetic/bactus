@@ -24,7 +24,7 @@ def dataStatistics(data,statistic):
     Authors: Magnus Oksbøl Therkelsen & Carl Emil Elling
     """
     if data == None:
-        print("No data selected")
+        print('No data selected')
     else:
     #Mean Temperature
         result = None
