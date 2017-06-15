@@ -26,23 +26,23 @@ def dataStatistics(data,statistic):
     if np.size(data) == 0:
         print('No data selected')
     else:
-    #Mean Temperature
+        # Mean Temperature
         result = None
         if statistic == 'Mean Temperature':
             result = np.mean(data[:,0])
-    #Mean Growth rate
+        # Mean Growth rate
         if statistic == 'Mean Growth Rate':
             result = np.mean(data[:,1])
-    #Standard deviation of temperature
+        # Standard deviation of temperature
         if statistic == 'Std Temperature':
             result = np.std(data[:,0])
-    #Standard deviation of growth rate
+        # Standard deviation of growth rate
         if statistic == 'Std Growth rate':
             result = np.std(data[:,1])
-    #Total number of rows in data
+        # Total number of rows in data
         if statistic == 'Rows':
             result = np.size(data[:,0])
-    #Mean growth rate below 20 degrees Celsius
+        # Mean growth rate below 20 degrees Celsius
         if statistic == 'Mean Cold Growth Rate':
             sort = np.array(data[:,0] < 20)
             mcgr = data[sort][:,1]
@@ -51,7 +51,7 @@ def dataStatistics(data,statistic):
                 result = "N/A"
             elif np.size(mcgr) > 0:
                 result = np.mean(mcgr)
-    #Mean growth rate above 50 degrees Celsius
+        # Mean growth rate above 50 degrees Celsius
         if statistic == 'Mean Hot Growth Rate':
             sort = np.array(data[:,0] > 50)
             mhgr = data[sort][:,1]
@@ -60,7 +60,7 @@ def dataStatistics(data,statistic):
                 result = "N/A"
             elif np.size(mhgr) > 0:
                 result = np.mean(mhgr)
-    # Results returned
+        # Results returned
         if statistic == "Rows":
             print("There are {:d} rows in the selected data.".format(result))   
         elif result == "N/A":
