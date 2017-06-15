@@ -73,35 +73,42 @@ def filterData(data, filter_params):
     filtered_data : ndarray
         Array that only contains filtered data
     """
-    
-    # Unpack filter parameters
-    tr, gr, bt = filter_params
 
-    # Create a masked array
-    m_data = np.ma.masked_array(data)
-
-    # If user reset filter we set the mask for that column to False
-    # For ranges, mask everything out of range
-    # For bacteria type, check if it should be filtered
-    if tr == None:
-        m_data[:,0].mask = False
+    if data == None:
+            print('No data selected')
     else:
-        m_data[:,0] = np.ma.masked_outside(m_data[:,0], *tr)
+        # Unpack filter parameters
+        tr, gr, bt = filter_params
 
-    if gr == None:
-        m_data[:,1].mask = False
-    else:
-        m_data[:,1] = np.ma.masked_outside(m_data[:,1], *gr)
+        # Create a masked array
+        m_data = np.ma.masked_array(data)
 
-    if bt == None:
-        m_data[:,2].mask = False
-    else:
-        m_data[:,2] = np.ma.masked_where(~np.in1d(m_data[:,2], bt), m_data[:,2])
+        # If user reset filter we set the mask for that column to False
+        # For ranges, mask everything out of range
+        # For bacteria type, check if it should be filtered
+        if tr == None:
+            m_data[:,0].mask = False
+        else:
+            m_data[:,0] = np.ma.masked_outside(m_data[:,0], *tr)
 
-    #Invert and combine
-    filter = ~m_data[:,0].mask & ~m_data[:,1].mask & ~m_data[:,2].mask
+        if gr == None:
+            m_data[:,1].mask = False
+        else:
+            m_data[:,1] = np.ma.masked_outside(m_data[:,1], *gr)
 
-    # Apply filter
-    f_data = data[filter,:]
+        if bt == None:
+            m_data[:,2].mask = False
+        else:
+            m_data[:,2] = np.ma.masked_where(~np.in1d(m_data[:,2], bt), m_data[:,2])
 
-    return f_data
+        #Invert and combine
+        filter = ~m_data[:,0].mask & ~m_data[:,1].mask & ~m_data[:,2].mask
+
+        # Apply filter
+        f_data = data[filter,:]
+
+        # If the filter results in no data available, indicate this to rest of program
+        if np.size(f_data, axis=0):
+            return None
+        else:
+            return f_data
