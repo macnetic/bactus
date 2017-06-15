@@ -36,15 +36,16 @@ def displayMenu(options, prompt=None):
     
     while True:
         # Display menu options
+        print()
         for i in range(len(options)):
-            print("\n{:d}. {:s}".format(i+1, options[i]))
-            
+            print("{:d}. {:s}".format(i+1, options[i]))
+
         # Get a valid menu choice
         choice = inputInt(prompt)
-        if choice in range(1, len(options)+1): break
+        if choice in range(1, len(options)+1):
+            break
+
         print('Invalid menu selection')
-            
-            
     return choice
 
 # Test om det virker
