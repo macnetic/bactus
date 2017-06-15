@@ -20,9 +20,9 @@ optionsMain = (
         )
 optionsStat = (
         'Mean Temperature', 'Mean Growth Rate', 'Std Temperature', 
-        'Std Growth rate', 'Rows', 'Mean Cold Growth rate', 'Mean Hot Growth rate'
+        'Std Growth rate', 'Rows', 'Mean Cold Growth rate', 'Mean Hot Growth rate', 'Back to Main Menu'
         )
-optionsFilter = ('Temperature range', 'Growth rate range', 'Bacteria species', 'Reset all filters')
+optionsFilter = ('Temperature range', 'Growth rate range', 'Bacteria species', 'Reset all filters','Back to Main Menu')
 data = None
 f_params = [None, None, None]
 f_data = None
@@ -40,8 +40,10 @@ while True:
     elif sel == 2:
         # Filter data
         choice = displayMenu(optionsFilter, prompt='Please choose a filter: ')
-        if choice == 4
+        if choice == 4:
                 f_params = [None, None, None]
+        elif choice == 5:
+            continue
         else:
             f_params[choice-1] = filterData.getFilterParam(choice)
 
@@ -58,3 +60,4 @@ while True:
     elif sel == 5:
         # Quit the program
         break
+
