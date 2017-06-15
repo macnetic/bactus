@@ -42,21 +42,24 @@ while True:
         choice = displayMenu(optionsFilter, prompt='Please choose a filter: ')
         if choice == 4:
                 f_params = [None, None, None]
-        #Back to menu
+        # Back to menu
         elif choice == 5:
             continue
         else:
             f_params[choice-1] = filterData.getFilterParam(choice)
 
-        f_data = filterData.filterData(data, f_params)
+        f_data = filterData.filterData(f_data, f_params)
     elif sel == 3:
+        
         # Compute statistics
+    
+        # Back to menu
         if choice == 8:
             continue
         else:
             print("Filter(s) applied: {}")
             selStat = displayMenu(optionsStat)
-            dataStatistics(data,optionsStat[selStat-1])
+            dataStatistics(f_data,optionsStat[selStat-1])
         
     elif sel == 4:
         # Generate plots
