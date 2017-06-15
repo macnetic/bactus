@@ -6,6 +6,7 @@ Created on Tue Jun 13 14:49:45 2017
 """
 import numpy as np
 import matplotlib.pyplot as plt
+
 def dataPlot(data):
     """
     DATAPLOT 
@@ -25,8 +26,8 @@ def dataPlot(data):
     if np.size(data) == 0:
         print('No data to plot')
     else:
-#    Number of bacteria - bar chart
-# Number of different bacteria is counted
+        #    Number of bacteria - bar chart
+        # Number of different bacteria is counted
     
         bacId = [1,2,3,4]
         bacNo = [0,0,0,0]
@@ -54,10 +55,10 @@ def dataPlot(data):
         plt.figtext(0.98,0.49,bacteriaSel)
         plt.show()
     
-#    Growth rate by temperature
-    #Data is sorted by temperature 
+        #    Growth rate by temperature
+        #Data is sorted by temperature
         sortedData = data[data[:,0].argsort()]
-    #and by bacteria type
+        #and by bacteria type
         bac1 = sortedData[sortedData[:,2] == 1]
         bac2 = sortedData[sortedData[:,2] == 2]
         bac3 = sortedData[sortedData[:,2] == 3]
