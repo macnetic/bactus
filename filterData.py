@@ -6,9 +6,8 @@ Created on Mon Jun 12 14:12:10 2017
 """
 
 import numpy as np
+import userInput
 
-from inputNumber import inputRange, inputIntSet
-from displayMenu import displayMenu
 
 bacteria = (
         'Salmonella enterica', 'Bacillus cereus', 'Listeria', 
@@ -39,12 +38,12 @@ def getFilterParam(choice):
     if choice == 1:
         print("Write range comma-separated, e.g. '10.0,60.0'.")
         print('Leave the field empty to reset filter.')
-        temp_range = inputRange('Temperature range: ')
+        temp_range = userInput.inputRange('Temperature range: ')
         return temp_range
     elif choice == 2:
         print("Write range comma-separated, e.g. '10.0,60.0'.")
         print('Leave the field empty to reset filter.')
-        growth_range = inputRange('Growth rate range: ')
+        growth_range = userInput.inputRange('Growth rate range: ')
         return growth_range
     elif choice == 3:
         # Display options for bacteria filter
@@ -52,7 +51,7 @@ def getFilterParam(choice):
         print('Leave the field empty to reset filter.')
         for i in range(len(bacteria)):
             print('{:d}. {:s}'.format(i+1, bacteria[i]))
-        bac_type = inputIntSet('Bacteria species: ')
+        bac_type = userInput.inputIntSet('Bacteria species: ')
         return bac_type
 
 def filterData(data, filter_params):
@@ -74,7 +73,7 @@ def filterData(data, filter_params):
         Array that only contains filtered data
     """
 
-    if data == None:
+    if np.size(data) == 0:
             print('No data selected')
     else:
         # Unpack filter parameters
@@ -101,14 +100,14 @@ def filterData(data, filter_params):
         else:
             m_data[:,2] = np.ma.masked_where(~np.in1d(m_data[:,2], bt), m_data[:,2])
 
-        #Invert and combine
-        filter = ~m_data[:,0].mask & ~m_data[:,1].mask & ~m_data[:,2].mask
+        # Invert and combine
+        data_filter = ~m_data[:,0].mask & ~m_data[:,1].mask & ~m_data[:,2].mask
 
         # Apply filter
-        f_data = data[filter,:]
+        f_data = data[data_filter,:]
 
         # If the filter results in no data available, indicate this to rest of program
-        if np.size(f_data, axis=0):
+        if np.size(f_data, axis=0) == 0:
             return None
         else:
             return f_data
