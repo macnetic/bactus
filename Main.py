@@ -22,9 +22,6 @@ optionsStat = (
         'Mean Temperature', 'Mean Growth Rate', 'Std Temperature', 
         'Std Growth rate', 'Rows', 'Mean Cold Growth rate', 'Mean Hot Growth rate'
         )
-optionsFilter = (
-        
-        )
 data = None
 f_params = None
 f_data = None
