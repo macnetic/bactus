@@ -1,7 +1,7 @@
 import numpy as np
 import numpy.ma as ma
 
-from filterData import getFilterParams, filterData
+from filterData import getFilterParam, filterData
 
 test_params = [[20,40],
                [0.3,0.4],
