@@ -21,7 +21,7 @@ optionsMain = (
 optionsStat = (
         'Mean Temperature', 'Mean Growth Rate', 'Std Temperature', 
         'Std Growth rate', 'Rows', 'Mean Cold Growth rate', 'Mean Hot Growth rate', 'Back to Main Menu'
-        )
+        )2
 optionsFilter = ('Temperature range', 'Growth rate range', 'Bacteria species', 'Reset all filters','Back to Main Menu')
 data = None
 f_params = [None, None, None]
@@ -42,6 +42,7 @@ while True:
         choice = displayMenu(optionsFilter, prompt='Please choose a filter: ')
         if choice == 4:
                 f_params = [None, None, None]
+        #Back to menu
         elif choice == 5:
             continue
         else:
@@ -50,9 +51,13 @@ while True:
         f_data = filterData.filterData(data, f_params)
     elif sel == 3:
         # Compute statistics
-        print("Filter(s) applied: {}")
-        selStat = displayMenu(optionsStat)
-        dataStatistics(data,optionsStat[selStat-1])
+        if choice == 8:
+            continue
+        else:
+            print("Filter(s) applied: {}")
+            selStat = displayMenu(optionsStat)
+            dataStatistics(data,optionsStat[selStat-1])
+        
     elif sel == 4:
         # Generate plots
         dataPlot(data)
@@ -60,4 +65,4 @@ while True:
     elif sel == 5:
         # Quit the program
         break
-
+ 
