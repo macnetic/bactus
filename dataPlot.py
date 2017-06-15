@@ -23,6 +23,7 @@ def dataPlot(data):
     
     Authors: Carl Emil Elling & Magnus Oksbøl Therkelsen
     """
+
     if np.size(data) == 0:
         print('No data to plot')
     else:
@@ -47,15 +48,15 @@ def dataPlot(data):
         plt.legend((plot[0],plot[1],plot[2],plot[3]), ('1. Salmonella enterica', '2. Bacillus cereus','3. Listeria','4. Brochothrix thermosphacta'),bbox_to_anchor=(1,1))
         # Filter criteria 
         
-        tempRange = "Temperature range: {:f} to {:f}".format(temp_range[0],temp_range[1])
-        growthRange = "Growth range: {:f} to {:f}".format(growth_range[0],growth_range[1])
-        bacteriaSel = "Bacteria selected: {:d}".format(bac_type)
-        plt.figtext(0.975,0.6,tempRange)
-        plt.figtext(0.98,0.54,growthRange)
-        plt.figtext(0.98,0.49,bacteriaSel)
+        # tempRange = "Temperature range: {:f} to {:f}".format(*tr)
+        # growthRange = "Growth range: {:f} to {:f}".format(*gr)
+        # bacteriaSel = "Bacteria selected: {:d}".format(bt)
+        # plt.figtext(0.975,0.6,tempRange)
+        # plt.figtext(0.98,0.54,growthRange)
+        # plt.figtext(0.98,0.49,bacteriaSel)
         plt.show()
-    
-        #    Growth rate by temperature
+
+        # Growth rate by temperature
         #Data is sorted by temperature
         sortedData = data[data[:,0].argsort()]
         #and by bacteria type
@@ -75,9 +76,9 @@ def dataPlot(data):
         pl4 = ax1.plot(bac4[:,0],bac4[:,1],'-o',color="orange",alpha=0.7,label='4. Brochothrix thermosphacta')
         ax1.legend(bbox_to_anchor=(1,1))
         # Filter criteria    
-        plt.figtext(0.975,0.6,tempRange)
-        plt.figtext(0.98,0.54,growthRange)
-        plt.figtext(0.98,0.49,bacteriaSel)
+        # plt.figtext(0.975,0.6,tempRange)
+        # plt.figtext(0.98,0.54,growthRange)
+        # plt.figtext(0.98,0.49,bacteriaSel)
         plt.show()
 
 # For testing purposes
