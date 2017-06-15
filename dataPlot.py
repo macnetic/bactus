@@ -68,7 +68,7 @@ def dataPlot(data):
     # Filter criteria added as text
     test = [0,1,2]
     plt.figtext(0.2,-0.05,str(test))
-    plt.plot()
+    plt.show()
 
 # For testing purposes
 if __name__ == '__main__':

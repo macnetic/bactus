@@ -4,7 +4,7 @@ Created on Tue Jun 13 12:14:56 2017
 
 @author: Magnus Oksbøl Therkelsen & Carl Emil Elling
 """
-
+import numpy as np
 def dataStatistics(data,statistic):
     """
     Statistical calculations on data imported with dataLoad function.
@@ -72,7 +72,7 @@ def dataStatistics(data,statistic):
 if __name__ == "__main__":
     datatest = dataLoad("test.txt")
     print("Statistics Test:")
-    print(dataStatistics(datatest,"Mean Cold Growth Rate"))
+    print(dataStatistics(datatest,"Mean Temperature"))
 #    print(dataStatistics(np.array([20,0,0]),"Mean Cold Growth Rate"))
 
 

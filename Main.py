@@ -10,6 +10,7 @@ from getFilename import getFilename
 from dataLoad import dataLoad
 import filterData
 from dataStatistic import *
+from dataPlot import *
 
 
 # Menus options
@@ -43,11 +44,12 @@ while True:
         f_params = filterData.getFilterParams()
         f_data = filterData.filterData(data, f_params)
     elif sel == 3:
-        # Compute statistic
+        # Compute statistics
         selStat = displayMenu(optionsStat)
-        print(dataStatistics(data,selStat))
+        dataStatistics(data,optionsStat[selStat-1])
     elif sel == 4:
         # Generate plots
+        dataPlot(data)
         pass
     elif sel == 5:
         # Quit the program
