@@ -8,6 +8,8 @@ Created on Mon Jun 12 12:24:33 2017
 from displayMenu import displayMenu
 from getFilename import getFilename
 from dataLoad import dataLoad
+import filterData
+from dataStatistic import *
 
 
 # Menus options
@@ -23,6 +25,9 @@ optionsFilter = (
         
         )
 data = None
+f_params = None
+f_data = None
+
 while True:
     sel = displayMenu(optionsMain)
     
@@ -30,13 +35,17 @@ while True:
         # Load data
         fileIn = getFilename()
         data = dataLoad(fileIn)
+        # Reset filter and filter data
+        f_params = [None, None, None]
+        f_data = filterData.filterData(data, f_params)
     elif sel == 2:
         # Filter data
-        pass
+        f_params = filterData.getFilterParams()
+        f_data = filterData.filterData(data, f_params)
     elif sel == 3:
         # Compute statistic
         selStat = displayMenu(optionsStat)
-        print(dataStatistics(selStat))
+        print(dataStatistics(data,selStat))
     elif sel == 4:
         # Generate plots
         pass
