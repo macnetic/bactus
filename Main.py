@@ -52,13 +52,13 @@ while True:
     elif sel == 3:
         
         # Compute statistics
-    
+        print("Filter(s) applied:")
+        print("Temperature between: {f]")
+        selStat = displayMenu(optionsStat)
         # Back to menu
-        if choice == 8:
+        if selStat == 8:
             continue
         else:
-            print("Filter(s) applied: {}")
-            selStat = displayMenu(optionsStat)
             dataStatistics(f_data,optionsStat[selStat-1])
         
     elif sel == 4:
