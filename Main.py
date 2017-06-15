@@ -20,7 +20,7 @@ optionsMain = (
         )
 optionsStat = (
         'Mean Temperature', 'Mean Growth Rate', 'Std Temperature', 
-        'Std Growth rate', 'Rows', 'Mean Cold Growth rate', 'Mean Hot Growth rate', 'Back to Main Menu'
+        'Std Growth rate', 'Rows', 'Mean Cold Growth Rate', 'Mean Hot Growth Rate', 'Back to Main Menu'
         )
 optionsFilter = ('Temperature range', 'Growth rate range', 'Bacteria species', 'Reset all filters','Back to Main Menu')
 data = np.array([])

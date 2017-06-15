@@ -66,7 +66,7 @@ def dataStatistics(data,statistic):
         elif result == "N/A":
             print("Cannot calculate {:s}. Please input valid data".format(statistic))
         else:
-            print("The {:s} of the selcted data is {:f}".format(statistic,result))
+            print("The {:s} of the selected data is {:f}".format(statistic,result))
         return result
 
 # For test purposes
