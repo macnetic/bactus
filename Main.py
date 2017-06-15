@@ -53,7 +53,14 @@ while True:
         
         # Compute statistics
         print("Filter(s) applied:")
-        print("Temperature between: {f]")
+        if f_params[0] != None:
+            print("Temperature between: {:.2f} °C and {:.2f} °C".format(f_params[0][0],f_params[0][1]))
+        if f_params[1] != None:
+            print("Growth rate between: {:.3f} and {:.3f}".format(f_params[1][0],f_params[1][1]))
+        if f_params[2] != None:
+            print("Bacteria selected: {:s}".format(str(f_params[2])))
+        elif f_params == [None,None,None]:
+            print("None")
         selStat = displayMenu(optionsStat)
         # Back to menu
         if selStat == 8:
@@ -63,7 +70,16 @@ while True:
         
     elif sel == 4:
         # Generate plots
-        dataPlot(data)
+        print("Filter(s) applied:")
+        if f_params[0] != None:
+            print("Temperature between: {:.2f} °C and {:.2f} °C".format(f_params[0][0],f_params[0][1]))
+        if f_params[1] != None:
+            print("Growth rate between: {:.3f} and {:.3f}".format(f_params[1][0],f_params[1][1]))
+        if f_params[2] != None:
+            print("Bacteria selected: {:s}".format(str(f_params[2])))
+        elif f_params == [None,None,None]:
+            print("None")
+        dataPlot(f_data)
         pass
     elif sel == 5:
         # Quit the program
