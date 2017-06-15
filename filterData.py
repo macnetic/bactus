@@ -15,12 +15,19 @@ bacteria = (
         'Brochothrix thermosphacta'
         )
 
-def getFilterParams():
+def getFilterParam(choice):
     """
     Prompts user for filter parameters.
-    
+
+    Parameters
+    ----------
+    choice : int
+        Result from displayMenu()
+
     Return
     ------
+    returns one of these values:
+
     temp_range : array
         Temperature range. returns None if user doesn't input range.
     growth_range : array
@@ -28,18 +35,25 @@ def getFilterParams():
     bac_type : array
         Bacteria types. returns None if no bacteria are selected.
     """
-    
-    print("Write values comma-separated, e.g. '10.0,60.0' or '1,2,3'.")
-    print('Leave the field empty to reset filter.')
-    temp_range = inputRange('Temperature range: ')
-    growth_range = inputRange('Growth rate range: ')
-    
-    # Display options for bacteria filter
-    for i in range(len(bacteria)):
-        print('{:d}. {:s}'.format(i+1, bacteria[i]))
-    bac_type = inputIntSet('Bacteria species: ')
-    
-    return [temp_range, growth_range, bac_type]
+
+    if choice == 1:
+        print("Write range comma-separated, e.g. '10.0,60.0'.")
+        print('Leave the field empty to reset filter.')
+        temp_range = inputRange('Temperature range: ')
+        return temp_range
+    elif choice == 2:
+        print("Write range comma-separated, e.g. '10.0,60.0'.")
+        print('Leave the field empty to reset filter.')
+        growth_range = inputRange('Growth rate range: ')
+        return growth_range
+    elif choice == 3:
+        # Display options for bacteria filter
+        print("Write values comma-separated, e.g. '1,2,4'.")
+        print('Leave the field empty to reset filter.')
+        for i in range(len(bacteria)):
+            print('{:d}. {:s}'.format(i+1, bacteria[i]))
+        bac_type = inputIntSet('Bacteria species: ')
+        return bac_type
 
 def filterData(data, filter_params):
     """
