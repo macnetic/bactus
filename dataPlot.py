@@ -46,11 +46,12 @@ def dataPlot(data):
         plt.legend((plot[0],plot[1],plot[2],plot[3]), ('1. Salmonella enterica', '2. Bacillus cereus','3. Listeria','4. Brochothrix thermosphacta'),bbox_to_anchor=(1,1))
         # Filter criteria 
         
-        tempRange = "Temperature range: {:s}"
-        growthRange = "Growth range: {:s}"
-        bacteriaSel = "Bacteria selected: {}"
-        criteria = [0,1,2]
-        plt.figtext(0.98,0.6,str(criteria))
+        tempRange = "Temperature range: {:f} to {:f}".format(temp_range[0],temp_range[1])
+        growthRange = "Growth range: {:f} to {:f}".format(growth_range[0],growth_range[1])
+        bacteriaSel = "Bacteria selected: {:d}".format(bac_type)
+        plt.figtext(0.975,0.6,tempRange)
+        plt.figtext(0.98,0.54,growthRange)
+        plt.figtext(0.98,0.49,bacteriaSel)
         plt.show()
     
 #    Growth rate by temperature
@@ -73,7 +74,9 @@ def dataPlot(data):
         pl4 = ax1.plot(bac4[:,0],bac4[:,1],'-o',color="orange",alpha=0.7,label='4. Brochothrix thermosphacta')
         ax1.legend(bbox_to_anchor=(1,1))
         # Filter criteria    
-        plt.figtext(0.98,0.6,str(criteria))
+        plt.figtext(0.975,0.6,tempRange)
+        plt.figtext(0.98,0.54,growthRange)
+        plt.figtext(0.98,0.49,bacteriaSel)
         plt.show()
 
 # For testing purposes

@@ -62,7 +62,7 @@ def dataStatistics(data,statistic):
                 result = np.mean(mhgr)
     # Results returned
         if statistic == "Rows":
-            print("There are {:s} rows in the selected data.".format(result))   
+            print("There are {:d} rows in the selected data.".format(result))   
         elif result == "N/A":
             print("Cannot calculate {:s}. Please input valid data".format(statistic))
         else:
@@ -73,7 +73,7 @@ def dataStatistics(data,statistic):
 if __name__ == "__main__":
     datatest = dataLoad("test.txt")
     print("Statistics Test:")
-    print(dataStatistics(datatest,"Mean Temperature"))
+    print(dataStatistics(datatest,"Rows"))
 #    print(dataStatistics(np.array([20,0,0]),"Mean Cold Growth Rate"))
 
 
