@@ -6,6 +6,7 @@ Created on Mon Jun 12 14:12:10 2017
 """
 
 import numpy as np
+import numpy.ma as ma
 import userInput
 
 
@@ -80,7 +81,7 @@ def filterData(data, filter_params):
         tr, gr, bt = filter_params
 
         # Create a masked array
-        m_data = np.ma.masked_array(data)
+        m_data = ma.array(data, mask=False)
 
         # If user reset filter we set the mask for that column to False
         # For ranges, mask everything out of range
